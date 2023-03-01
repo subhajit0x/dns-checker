@@ -2,7 +2,7 @@ name: DNS Check
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Run every day at midnight UTC
+    - cron: '0 0 * * *' # Run every day at midnightt UTC
 
 jobs:
   dns-check:
