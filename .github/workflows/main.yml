@@ -1,0 +1,25 @@
+name: DNS Check
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Run every day at midnight UTC
+
+jobs:
+  dns-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run DNS Check
+        run: python dns_check.py
+      - name: Save results
+        uses: actions/upload-artifact@v2
+        with:
+          name: dns-check-results
+          path: dns_check_results.txt
